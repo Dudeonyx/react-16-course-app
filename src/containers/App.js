@@ -68,8 +68,6 @@ class App extends Component {
           toggleShowPersons={this.toggleShowPersons}
           persons={this.state.persons}
           showPersons={this.state.showPersons}
-          deletePersonHandler={this.deletePersonHandler}
-          nameChangedHandler={this.nameChangedHandler}
         />
         {persons}
       </div>
