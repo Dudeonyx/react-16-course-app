@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './App.module.css';
 import classLister from 'css-module-class-lister';
 import Cockpit from '../Cockpit/Cockpit';
+import Persons from '../components/Persons/Persons';
 
 class App extends Component {
   state = {
@@ -51,6 +52,16 @@ class App extends Component {
 
   render() {
     const classes = classLister(styles);
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
+      );
+    }
     return (
       <div className={classes('App', 'D-flex-c')}>
         <Cockpit
@@ -60,6 +71,7 @@ class App extends Component {
           deletePersonHandler={this.deletePersonHandler}
           nameChangedHandler={this.nameChangedHandler}
         />
+        {persons}
       </div>
     );
   }
