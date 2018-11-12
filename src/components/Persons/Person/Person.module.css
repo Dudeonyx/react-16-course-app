@@ -1,0 +1,25 @@
+.Person {
+  border: 2px ridge rgba(128, 128, 128, 0.507);
+  box-shadow: 0px 2px 6px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 10px;
+  padding: 11px;
+  min-width: 40vw;
+}
+
+@media (max-width: 925px) {
+  .Person {
+    min-width: 50vw;
+  }
+}
+@media (max-width: 756px) {
+  .Person {
+    min-width: 70vw;
+  }
+}
+@media (max-width: 425px) {
+  .Person {
+    min-width: 90vw;
+  }
+}
