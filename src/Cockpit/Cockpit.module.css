@@ -1,4 +1,8 @@
-.Cockpit button {
+p.Red {
+  color: red;
+  text-shadow: 1px 1px 3px rgb(255, 54, 54);
+}
+button {
   background-color: white;
   padding: 15px 6px;
   border: 1px solid black;
@@ -8,45 +12,45 @@
   box-shadow: 0 0 4px;
 }
 
-.Cockpit button:hover {
+button:hover {
   background-color: gray;
   box-shadow: 0 0 8px 1px black;
   color: bisque;
 }
 
-.Cockpit button.Green {
+button.Green {
   background-color: rgb(12, 114, 12);
   color: blanchedalmond;
 }
 
-.Cockpit button.Green:hover {
+button.Green:hover {
   color: rgba(0, 0, 0, 0.747);
   background-color: rgb(22, 211, 22);
 }
 
-.Cockpit button.Orange {
+button.Orange {
   color: rgb(255, 255, 255);
   background-color: rgb(255, 166, 0);
 }
 
-.Cockpit button.Orange:hover {
+button.Orange:hover {
   color: rgba(0, 0, 0, 0.747);
   background-color: rgb(255, 173, 22);
 }
-.Cockpit button.Red {
+button.Red {
   color: rgb(255, 255, 255);
   background-color: rgb(231, 16, 16);
 }
-.Cockpit button.Red:hover {
+button.Red:hover {
   color: rgba(0, 0, 0, 0.747);
   background-color: red;
 }
-.Cockpit button.Black {
+button.Black {
   color: rgb(48, 40, 40);
   background-color: rgb(0, 0, 0);
   box-shadow: none;
 }
-.Cockpit button.Black:hover {
+button.Black:hover {
   /* background-color:unset; */
   box-shadow: none;
 }

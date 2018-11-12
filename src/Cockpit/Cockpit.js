@@ -10,10 +10,11 @@ const Cockpit = props => {
   btnClass = props.persons.length <= 2 ? 'Orange' : btnClass;
   btnClass = props.persons.length <= 1 ? 'Red' : btnClass;
   btnClass = props.persons.length <= 0 ? 'Black' : btnClass;
+  let pClass = props.persons.length <= 1 ? 'Red' : '';
   return (
     <div className={classes('Cockpit')}>
       <h1>Hi, I'm a React App!</h1>
-      <p>This is really working!!!</p>
+      <p className={classes(pClass)}>This is really working!!!</p>
       <button className={classes(btnClass)} onClick={props.toggleShowPersons}>
         Toggle Persons!
       </button>
