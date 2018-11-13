@@ -2,6 +2,10 @@ p.Red {
   color: red;
   text-shadow: 1px 1px 3px rgb(255, 54, 54);
 }
+p.Bigger{
+  font-size: 1.5em;
+  font-weight: bold;
+}
 button {
   background-color: white;
   padding: 15px 6px;

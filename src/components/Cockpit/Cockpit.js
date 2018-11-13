@@ -2,15 +2,25 @@ import React from 'react';
 import classLister from 'css-module-class-lister';
 import styles from './Cockpit.module.css';
 
-const Cockpit = props => {
+const cockpit = props => {
   const classes = classLister(styles);
-  console.log(styles, Cockpit);
   let btnClass = '';
-  btnClass = props.showPersons ? 'Green' : '';
-  btnClass = props.persons.length <= 2 ? 'Orange' : btnClass;
-  btnClass = props.persons.length <= 1 ? 'Red' : btnClass;
-  btnClass = props.persons.length <= 0 ? 'Black' : btnClass;
-  let pClass = props.persons.length <= 1 ? 'Red' : '';
+  const numOfPersons = props.persons.length;
+  if (props.showPersons) {
+    if (numOfPersons < 1) {
+      btnClass = 'Black';
+    } else if (numOfPersons < 2) {
+      btnClass = 'Red';
+    } else if (numOfPersons < 3) {
+      btnClass = 'Orange';
+    } else {
+      btnClass = 'Green';
+    }
+  }
+  let pClass = [];
+  props.persons.length <= 1 && pClass.push('Red');
+  props.persons.length <= 0 && pClass.push('Bigger');
+
   return (
     <div className={classes('Cockpit')}>
       <h1>Hi, I'm a React App!</h1>
@@ -22,4 +32,4 @@ const Cockpit = props => {
   );
 };
 
-export default Cockpit;
+export default cockpit;
