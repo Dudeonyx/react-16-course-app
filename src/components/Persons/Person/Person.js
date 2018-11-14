@@ -32,7 +32,7 @@ class Person extends Component {
   //     `${this.props.name} is being removed`
   //   );
   // } */
-  componentDidUpdate(nextProps, nextState, nextContext) {
+  componentDidUpdate = (nextProps, nextState, nextContext) => {
     console.log(
       '[UPDATE Person.js] Inside componentDidUpdate',
       nextProps,
@@ -40,7 +40,7 @@ class Person extends Component {
       nextContext
     );
     this.props.position === 0 && this.focusInput();
-  }
+  };
   render() {
     console.log('[Person.js] Inside render()');
     return (
