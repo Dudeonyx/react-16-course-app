@@ -2,6 +2,7 @@ import React from 'react';
 import classLister from 'css-module-class-lister';
 import styles from './Cockpit.module.css';
 import AuthContext from '../AuthContext/AuthContext';
+import Aux from '../../hoc/Auxillary';
 
 const classes = classLister(styles);
 
@@ -24,27 +25,29 @@ const cockpit = props => {
   props.persons.length <= 0 && pClass.push('Bigger');
 
   return (
-    <div className={classes('Cockpit')}>
+    <Aux>
       <h1>{props.title}</h1>
       <p className={classes(pClass)}>This is really working!!!</p>
-      <button
-        className={classes('btn', btnClass)}
-        onClick={props.toggleShowPersons}
-      >
-        Toggle Persons!
-      </button>
-      <AuthContext.Consumer>
-        {({ authenticated, handler }) => {
-          let loginClass = authenticated ? 'Red' : 'Green';
-          return (
-            <button onClick={handler} className={classes('btn', loginClass)}>
-              Log {authenticated ? 'Out' : 'In'}
-            </button>
-          );
-        }}
-      </AuthContext.Consumer>
-    </div>
+      <div>
+        <button
+          className={classes('btn', btnClass)}
+          onClick={props.toggleShowPersons}
+        >
+          Toggle Persons!
+        </button>
+        <AuthContext.Consumer>
+          {({ authenticated, handler }) => {
+            let loginClass = authenticated ? 'Red' : 'Green';
+            return (
+              <button onClick={handler} className={classes('btn', loginClass)}>
+                Log {authenticated ? 'Out' : 'In'}
+              </button>
+            );
+          }}
+        </AuthContext.Consumer>
+      </div>
+    </Aux>
   );
 };
 
-export default cockpit;
+export default React.memo(cockpit);
