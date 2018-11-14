@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classLister from 'css-module-class-lister';
 import styles from './Cockpit.module.css';
 import AuthContext from '../AuthContext/AuthContext';
