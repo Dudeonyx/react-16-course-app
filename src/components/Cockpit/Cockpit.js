@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classLister from 'css-module-class-lister';
 import styles from './Cockpit.module.css';
+import AuthContext from '../AuthContext/AuthContext';
 
 const classes = classLister(styles);
 
@@ -26,9 +27,22 @@ const cockpit = props => {
     <div className={classes('Cockpit')}>
       <h1>{props.title}</h1>
       <p className={classes(pClass)}>This is really working!!!</p>
-      <button className={classes(btnClass)} onClick={props.toggleShowPersons}>
+      <button
+        className={classes('btn', btnClass)}
+        onClick={props.toggleShowPersons}
+      >
         Toggle Persons!
       </button>
+      <AuthContext.Consumer>
+        {({ authenticated, handler }) => {
+          let loginClass = authenticated ? 'Red' : 'Green';
+          return (
+            <button onClick={handler} className={classes('btn', loginClass)}>
+              Log {authenticated ? 'Out' : 'In'}
+            </button>
+          );
+        }}
+      </AuthContext.Consumer>
     </div>
   );
 };

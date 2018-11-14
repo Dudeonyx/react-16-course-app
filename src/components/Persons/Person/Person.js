@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import styles from './Person.module.css';
 import classLister from 'css-module-class-lister';
 import PropTypes from 'prop-types';
-import Aux from '../../../hoc/Auxillary';
-import withClass from '../../../hoc/withClass';
+import AuthContext from '../../AuthContext/AuthContext';
 
 const classes = classLister(styles);
 class Person extends Component {
@@ -44,10 +43,15 @@ class Person extends Component {
   render() {
     console.log('[Person.js] Inside render()');
     return (
-      <Aux>
+      <div className={classes('Person')}>
         <p onClick={this.props.clicked}>
           I'm {this.props.name} and I am {this.props.age} years old!
         </p>
+        <AuthContext.Consumer>
+          {({ authenticated }) =>
+            authenticated ? <p>I'm logged in!!!</p> : null
+          }
+        </AuthContext.Consumer>
         <p>{this.props.children}</p>
         <input
           ref={this.inputElement}
@@ -55,7 +59,7 @@ class Person extends Component {
           onChange={this.props.changed}
           value={this.props.name}
         />
-      </Aux>
+      </div>
     );
   }
 }
@@ -63,6 +67,6 @@ Person.propTypes = {
   clicked: PropTypes.func,
   changed: PropTypes.func,
   name: PropTypes.string,
-  age: PropTypes.number
+  age: PropTypes.number,
 };
-export default withClass(Person, classes('Person'));
+export default Person;

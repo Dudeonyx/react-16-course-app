@@ -6,7 +6,7 @@ p.Bigger{
   font-size: 1.5em;
   font-weight: bold;
 }
-button {
+.btn {
   background-color: white;
   padding: 15px 6px;
   border: 1px solid black;
@@ -14,47 +14,48 @@ button {
   cursor: pointer;
   font-weight: bold;
   box-shadow: 0 0 4px;
+  margin: 4px;
 }
 
-button:hover {
+.btn:hover {
   background-color: gray;
   box-shadow: 0 0 8px 1px black;
   color: bisque;
 }
 
-button.Green {
+.btn.Green {
   background-color: rgb(12, 114, 12);
   color: blanchedalmond;
 }
 
-button.Green:hover {
+.btn.Green:hover {
   color: rgba(0, 0, 0, 0.747);
   background-color: rgb(22, 211, 22);
 }
 
-button.Orange {
+.btn.Orange {
   color: rgb(255, 255, 255);
   background-color: rgb(255, 166, 0);
 }
 
-button.Orange:hover {
+.btn.Orange:hover {
   color: rgba(0, 0, 0, 0.747);
   background-color: rgb(255, 173, 22);
 }
-button.Red {
+.btn.Red {
   color: rgb(255, 255, 255);
   background-color: rgb(231, 16, 16);
 }
-button.Red:hover {
+.btn.Red:hover {
   color: rgba(0, 0, 0, 0.747);
   background-color: red;
 }
-button.Black {
+.btn.Black {
   color: rgb(48, 40, 40);
   background-color: rgb(0, 0, 0);
   box-shadow: none;
 }
-button.Black:hover {
+.btn.Black:hover {
   /* background-color:unset; */
   box-shadow: none;
 }

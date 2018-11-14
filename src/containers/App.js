@@ -3,6 +3,7 @@ import styles from './App.module.css';
 import classLister from 'css-module-class-lister';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Persons from '../components/Persons/Persons';
+import AuthContext from '../components/AuthContext/AuthContext';
 
 const classes = classLister(styles);
 
@@ -15,10 +16,11 @@ class App extends PureComponent {
     persons: [
       { id: 'gsfhgh', name: 'Max', age: 29 },
       { id: 'sfgdshgh', name: 'Manu', age: 28 },
-      { id: 'rgjjyt', name: 'Stephanie', age: 26 }
+      { id: 'rgjjyt', name: 'Stephanie', age: 26 },
     ],
     showPersons: false,
-    toggleClickedCount: 0
+    toggleClickedCount: 0,
+    isAuthenticated: false,
   };
 
   // componentWillMount() {
@@ -68,23 +70,23 @@ class App extends PureComponent {
   nameChangedHandler = (evt, id) => {
     const personIndex = this.state.persons.findIndex(p => p.id === id);
     const person = {
-      ...this.state.persons[personIndex]
+      ...this.state.persons[personIndex],
     };
     person.name = evt.target.value;
     const newPersons = [
       ...this.state.persons.slice(0, personIndex),
       person,
-      ...this.state.persons.slice(personIndex + 1)
+      ...this.state.persons.slice(personIndex + 1),
     ];
     this.setState({
-      persons: newPersons
+      persons: newPersons,
     });
   };
 
   toggleShowPersons = () => {
     this.setState((prevState, props) => ({
       showPersons: !prevState.showPersons,
-      toggleClickedCount: prevState.toggleClickedCount + 1
+      toggleClickedCount: prevState.toggleClickedCount + 1,
     }));
   };
 
@@ -92,11 +94,17 @@ class App extends PureComponent {
     const { persons } = this.state;
     const newPersons = [
       ...persons.slice(0, personIndex),
-      ...persons.slice(personIndex + 1)
+      ...persons.slice(personIndex + 1),
     ];
     this.setState({
-      persons: newPersons
+      persons: newPersons,
     });
+  };
+
+  toggleLoginHandler = () => {
+    this.setState(prevState => ({
+      isAuthenticated: !prevState.isAuthenticated,
+    }));
   };
 
   render() {
@@ -116,13 +124,20 @@ class App extends PureComponent {
         <button onClick={() => this.setState({ showPersons: true })}>
           Show Persons
         </button>
-        <Cockpit
-          title={this.props.title}
-          toggleShowPersons={this.toggleShowPersons}
-          persons={this.state.persons}
-          showPersons={this.state.showPersons}
-        />
-        {persons}
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.isAuthenticated,
+            handler: this.toggleLoginHandler,
+          }}
+        >
+          <Cockpit
+            title={this.props.title}
+            toggleShowPersons={this.toggleShowPersons}
+            persons={this.state.persons}
+            showPersons={this.state.showPersons}
+          />
+          {persons}
+        </AuthContext.Provider>
       </div>
     );
   }
