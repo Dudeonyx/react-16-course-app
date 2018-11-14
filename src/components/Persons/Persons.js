@@ -4,67 +4,71 @@ import Person from './Person/Person';
 class Persons extends Component {
   constructor(props) {
     super(props);
-    console.log('[Persons.js] Inside constructor', props);
+    // console.log('[Persons.js] Inside constructor', props);
+    this.personRef = React.createRef();
   }
 
-  componentWillMount() {
-    console.log('[Persons.js] Inside componentWillMount()');
-  }
+  // componentWillMount() {
+  //   console.log('[Persons.js] Inside componentWillMount()');
+  // }
 
   componentDidMount() {
     console.log('[Persons.js] Inside componentDidMount()');
+    // this.personRef.current.focusInput();
   }
-  /* componentWillUnmount() {
-    console.log(
-      '[Persons.js] Inside componentWillUnmount()',
-      `All Persons are being removed`
-      );
-    } */
-  componentWillReceiveProps(nextProps, nextContext) {
-    console.log(
-      '[UPDATE Persons.js] Inside componentReceiveProps',
-      nextProps,
-      nextContext
-    );
-  }
+  // /* componentWillUnmount() {
+  //   console.log(
+  //     '[Persons.js] Inside componentWillUnmount()',
+  //     `All Persons are being removed`
+  //     );
+  //   } */
+  // componentWillReceiveProps(nextProps, nextContext) {
+  //   console.log(
+  //     '[UPDATE Persons.js] Inside componentReceiveProps',
+  //     nextProps,
+  //     nextContext
+  //   );
+  // }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log(
-      '[UPDATE Persons.js] Inside shouldComponentUpdate',
-      nextProps,
-      nextState,
-      nextContext
-    );
-    return (
-      this.props.persons !== nextProps.persons ||
-      this.props.clicked !== nextProps.clicked ||
-      this.props.changed !== nextProps.changed
-    );
-  }
-  componentWillUpdate(nextProps, nextState, nextContext) {
-    console.log(
-      '[UPDATE Persons.js] Inside componentWillUpdate',
-      nextProps,
-      nextState,
-      nextContext
-    );
-  }
-  componentDidUpdate(nextProps, nextState, nextContext) {
-    console.log(
-      '[UPDATE Persons.js] Inside componentDidUpdate',
-      nextProps,
-      nextState,
-      nextContext
-    );
-  }
+  // shouldComponentUpdate(nextProps, nextState, nextContext) {
+  //   console.log(
+  //     '[UPDATE Persons.js] Inside shouldComponentUpdate',
+  //     nextProps,
+  //     nextState,
+  //     nextContext
+  //   );
+  //   return (
+  //     this.props.persons !== nextProps.persons ||
+  //     this.props.clicked !== nextProps.clicked ||
+  //     this.props.changed !== nextProps.changed
+  //   );
+  // }
+  // componentWillUpdate(nextProps, nextState, nextContext) {
+  //   console.log(
+  //     '[UPDATE Persons.js] Inside componentWillUpdate',
+  //     nextProps,
+  //     nextState,
+  //     nextContext
+  //   );
+  // }
+  // componentDidUpdate(nextProps, nextState, nextContext) {
+  //   console.log(
+  //     '[UPDATE Persons.js] Inside componentDidUpdate',
+  //     nextProps,
+  //     nextState,
+  //     nextContext
+  //   );
+  // }
   render() {
     console.log('[Persons.js] Inside render()');
     return this.props.persons.map((person, index) => (
       <Person
+        ref={this.personRef}
         clicked={() => this.props.clicked(index)}
         name={person.name}
         age={person.age}
         key={person.id}
+        position={index}
         changed={evt => this.props.changed(evt, person.id)}
       >
         {this.props.children}
@@ -72,4 +76,5 @@ class Persons extends Component {
     ));
   }
 }
+
 export default Persons;

@@ -2,8 +2,9 @@ import React from 'react';
 import classLister from 'css-module-class-lister';
 import styles from './Cockpit.module.css';
 
+const classes = classLister(styles);
+
 const cockpit = props => {
-  const classes = classLister(styles);
   let btnClass = '';
   const numOfPersons = props.persons.length;
   if (props.showPersons) {
@@ -23,7 +24,7 @@ const cockpit = props => {
 
   return (
     <div className={classes('Cockpit')}>
-      <h1>Hi, I'm a React App!</h1>
+      <h1>{props.title}</h1>
       <p className={classes(pClass)}>This is really working!!!</p>
       <button className={classes(btnClass)} onClick={props.toggleShowPersons}>
         Toggle Persons!

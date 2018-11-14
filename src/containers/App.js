@@ -4,63 +4,66 @@ import classLister from 'css-module-class-lister';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Persons from '../components/Persons/Persons';
 
+const classes = classLister(styles);
+
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    console.log('[App.js] Inside constructor', props);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   console.log('[App.js] Inside constructor', props);
+  // }
   state = {
     persons: [
       { id: 'gsfhgh', name: 'Max', age: 29 },
       { id: 'sfgdshgh', name: 'Manu', age: 28 },
       { id: 'rgjjyt', name: 'Stephanie', age: 26 }
     ],
-    showPersons: false
+    showPersons: false,
+    toggleClickedCount: 0
   };
 
-  componentWillMount() {
-    console.log('[App.js] Inside componentWillMount()');
-  }
+  // componentWillMount() {
+  //   console.log('[App.js] Inside componentWillMount()');
+  // }
 
-  componentDidMount() {
-    console.log('[App.js] Inside componentDidMount()');
-  }
+  // componentDidMount() {
+  //   console.log('[App.js] Inside componentDidMount()');
+  // }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    console.log(
-      '[UPDATE App.js] Inside componentReceiveProps',
-      nextProps,
-      nextContext
-    );
-  }
-  /* shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log(
-      '[UPDATE App.js] Inside shouldComponentUpdate',
-      nextProps,
-      nextState,
-      nextContext
-    );
-    return (
-      this.state.persons !== nextState.persons ||
-      this.state.showPersons !== nextState.showPersons
-    );
-  }// */
-  componentWillUpdate(nextProps, nextState, nextContext) {
-    console.log(
-      '[UPDATE App.js] Inside componentWillUpdate',
-      nextProps,
-      nextState,
-      nextContext
-    );
-  }
-  componentDidUpdate(nextProps, nextState, nextContext) {
-    console.log(
-      '[UPDATE App.js] Inside componentDidUpdate',
-      nextProps,
-      nextState,
-      nextContext
-    );
-  }
+  // componentWillReceiveProps(nextProps, nextContext) {
+  //   console.log(
+  //     '[UPDATE App.js] Inside componentReceiveProps',
+  //     nextProps,
+  //     nextContext
+  //   );
+  // }
+  // /* shouldComponentUpdate(nextProps, nextState, nextContext) {
+  //   console.log(
+  //     '[UPDATE App.js] Inside shouldComponentUpdate',
+  //     nextProps,
+  //     nextState,
+  //     nextContext
+  //   );
+  //   return (
+  //     this.state.persons !== nextState.persons ||
+  //     this.state.showPersons !== nextState.showPersons
+  //   );
+  // }// */
+  // componentWillUpdate(nextProps, nextState, nextContext) {
+  //   console.log(
+  //     '[UPDATE App.js] Inside componentWillUpdate',
+  //     nextProps,
+  //     nextState,
+  //     nextContext
+  //   );
+  // }
+  // componentDidUpdate(nextProps, nextState, nextContext) {
+  //   console.log(
+  //     '[UPDATE App.js] Inside componentDidUpdate',
+  //     nextProps,
+  //     nextState,
+  //     nextContext
+  //   );
+  // }
 
   nameChangedHandler = (evt, id) => {
     const personIndex = this.state.persons.findIndex(p => p.id === id);
@@ -79,9 +82,10 @@ class App extends PureComponent {
   };
 
   toggleShowPersons = () => {
-    this.setState({
-      showPersons: !this.state.showPersons
-    });
+    this.setState((prevState, props) => ({
+      showPersons: !prevState.showPersons,
+      toggleClickedCount: prevState.toggleClickedCount + 1
+    }));
   };
 
   deletePersonHandler = personIndex => {
@@ -97,7 +101,6 @@ class App extends PureComponent {
 
   render() {
     console.log('[App.js] Inside render()');
-    const classes = classLister(styles);
     let persons = null;
     if (this.state.showPersons) {
       persons = (
@@ -114,6 +117,7 @@ class App extends PureComponent {
           Show Persons
         </button>
         <Cockpit
+          title={this.props.title}
           toggleShowPersons={this.toggleShowPersons}
           persons={this.state.persons}
           showPersons={this.state.showPersons}
